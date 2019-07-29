@@ -1,7 +1,5 @@
 /*
 Evaluate a polynomial using a Singly Linked List
-
-
 */
 
 #include<stdio.h>
@@ -101,7 +99,38 @@ void display(NODE *root,int option){
 
 
 }
+//Ye wala function maine khali line banane ke liye use kiya.
+void display1(NODE *root,int option){
+    /*
+    Call function with root of List to print
+    Second argument can be zero or not-zero
+    A call with '0' will also print address
+    Useful for debugging
+    */
 
+    NODE *travelNode; //Used to travers the list 
+
+    travelNode = root;
+
+    if(option){
+        //print with only data
+		while(travelNode != NULL){
+			printf("-------------");//Jitne degrees user lega, ye line waha tak extend hogi.
+			travelNode=travelNode->next;
+		}
+		travelNode=root;//travelNode ko phir se root position pe leke aaya.
+		printf("\n");
+        while(travelNode != NULL){
+            printf("(%d(x^%d)) + ",travelNode->coefficient,travelNode->power);
+            travelNode = travelNode->next;
+        }
+
+        printf("0\n");
+        
+    }
+
+
+}
 
 //begin main()
 
@@ -125,12 +154,11 @@ int main(){
 
     printf("Enter the coefficients of the second polynomial expression along with the negative sign where required\n");
     expression_2 = createList(degree);
-
     addedExpression = addPoly(expression_1,expression_2);
 
     display(expression_1,1);
     display(expression_2,1);
-    display(addedExpression,1);
+    display1(addedExpression,1);
 
     return 0;
 }
